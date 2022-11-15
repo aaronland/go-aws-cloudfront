@@ -9,9 +9,9 @@ import (
 	aws_cloudfront "github.com/aws/aws-sdk-go/service/cloudfront"
 )
 
-// InvalidatePaths will issue a "CreateInvalidation" request for 'uris' in 'distribution_id'. It will return the caller
-// reference associated with the request.
-func InvalidatePaths(ctx context.Context, svc *aws_cloudfront.CloudFront, distribution_id string, uris ...string) (string, error) {
+// InvalidatePaths will issue a "CreateInvalidation" request for 'uris' in 'distribution_id'. It will return the
+// invalidation ID and caller reference associated with the request.
+func InvalidatePaths(ctx context.Context, svc *aws_cloudfront.CloudFront, distribution_id string, uris ...string) (string, string, error) {
 
 	count := len(uris)
 
@@ -29,7 +29,7 @@ func InvalidatePaths(ctx context.Context, svc *aws_cloudfront.CloudFront, distri
 	enc_items, err := json.Marshal(items)
 
 	if err != nil {
-		return "", fmt.Errorf("Failed to encode items used to derive reference, %v", err)
+		return "", "", fmt.Errorf("Failed to encode items used to derive reference, %v", err)
 	}
 
 	sum := sha256.Sum256(enc_items)
@@ -45,11 +45,13 @@ func InvalidatePaths(ctx context.Context, svc *aws_cloudfront.CloudFront, distri
 		InvalidationBatch: batch,
 	}
 
-	_, err = svc.CreateInvalidation(input)
+	rsp, err := svc.CreateInvalidation(input)
 
 	if err != nil {
-		return "", fmt.Errorf("Failed to create invalidation, %v", err)
+		return "", "", fmt.Errorf("Failed to create invalidation, %v", err)
 	}
 
-	return ref, nil
+	id := *rsp.Invalidation.Id
+
+	return id, ref, nil
 }

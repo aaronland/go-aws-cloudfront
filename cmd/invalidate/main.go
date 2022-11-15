@@ -1,7 +1,7 @@
 // Invalidate one or more URIs from a CloudFront distribution.
 // For example:
 //
-//	$> ./bin/invalidate -cloudfront-dsn 'region=us-west-2 credentials=session' -distribution-id {DISTRIBUTION_ID} /data/151/194/395/1/1511943951.geojson
+//	$> ./bin/invalidate -client-uri 'aws://region=us-east-1&credentials=session' -distribution-id {DISTRIBUTION_ID} /data/151/194/395/1/1511943951.geojson
 package main
 
 import (
@@ -15,7 +15,7 @@ import (
 
 func main() {
 
-	client_uri := flag.String("client-uri", "", "")
+	client_uri := flag.String("client-uri", "", "A valid client URI in the form of 'aws://?region={AWS_REGION}&credentials={CREDENTIALS}' where '{CREDENTIAL}' is expected to be a valid aaronland/go-aws-session credential string.")
 	distribution_id := flag.String("distribution-id", "", "A valid AWS CloudFront distribution ID.")
 
 	flag.Usage = func() {
@@ -36,11 +36,11 @@ func main() {
 
 	uris := flag.Args()
 
-	ref, err := cloudfront.InvalidatePaths(ctx, cl, *distribution_id, uris...)
+	id, ref, err := cloudfront.InvalidatePaths(ctx, cl, *distribution_id, uris...)
 
 	if err != nil {
 		log.Fatalf("Failed to invalidate paths, %v", err)
 	}
 
-	fmt.Println(ref)
+	fmt.Printf("%s %s\n", id, ref)
 }

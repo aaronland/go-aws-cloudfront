@@ -22,12 +22,10 @@ $> ./bin/invalidate -h
 Invalidate one or more URIs from a CloudFront distribution.
 Usage:
 	 ./bin/invalidate uri(N) uri(N)
-  -cloudfront-dsn string
-    	A valid aaronland/go-aws-session URI. Required elements are: region, credentials.
+  -client-uri string
+    	A valid client URI in the form of 'aws://?region={AWS_REGION}&credentials={CREDENTIALS}' where '{CREDENTIAL}' is expected to be a valid aaronland/go-aws-session credential string.
   -distribution-id string
     	A valid AWS CloudFront distribution ID.
-  -reference string
-    	An optional reference label to assign to your invaidation. If empty a reference will be derived from the URIs passed to the tool.
 ```
 
 ## See also
