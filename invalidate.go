@@ -9,6 +9,8 @@ import (
 	aws_cloudfront "github.com/aws/aws-sdk-go/service/cloudfront"
 )
 
+// InvalidatePaths will issue a "CreateInvalidation" request for 'uris' in 'distribution_id'. It will return the caller
+// reference associated with the request.
 func InvalidatePaths(ctx context.Context, svc *aws_cloudfront.CloudFront, distribution_id string, uris ...string) (string, error) {
 
 	count := len(uris)

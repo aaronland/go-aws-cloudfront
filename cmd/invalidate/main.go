@@ -15,7 +15,7 @@ import (
 
 func main() {
 
-	cloudfront_dsn := flag.String("cloudfront-dsn", "", "A valid aaronland/go-aws-session URI. Required elements are: region, credentials.")
+	client_uri := flag.String("client-uri", "", "")
 	distribution_id := flag.String("distribution-id", "", "A valid AWS CloudFront distribution ID.")
 
 	flag.Usage = func() {
@@ -28,15 +28,15 @@ func main() {
 
 	ctx := context.Background()
 
-	svc, err := cloudfront.GetServiceWithDSN(ctx, *cloudfront_dsn)
+	cl, err := cloudfront.NewClientWithURI(ctx, *client_uri)
 
 	if err != nil {
-		log.Fatalf("Failed to create service, %v", err)
+		log.Fatalf("Failed to create client, %v", err)
 	}
 
 	uris := flag.Args()
 
-	ref, err := cloudfront.InvalidatePaths(ctx, svc, *distribution_id, uris...)
+	ref, err := cloudfront.InvalidatePaths(ctx, cl, *distribution_id, uris...)
 
 	if err != nil {
 		log.Fatalf("Failed to invalidate paths, %v", err)

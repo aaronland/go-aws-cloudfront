@@ -9,6 +9,13 @@ import (
 	"net/url"
 )
 
+// NewSessionWithURI will return a new `aws-sdk-go/aws/session.Session` instance derived
+// from 'uri' which is expected to take the form of:
+//
+//	aws://?region={AWS_REGION}&credentials={CREDENTIALS}
+//
+// Where '{CREDENTIALS}' is expected to be a valid `aaronland/go-aws-session` credentials
+// string.
 func NewSessionWithURI(ctx context.Context, uri string) (*aws_session.Session, error) {
 
 	u, err := url.Parse(uri)
@@ -28,6 +35,13 @@ func NewSessionWithURI(ctx context.Context, uri string) (*aws_session.Session, e
 	return sess, nil
 }
 
+// NewClientWithURI will return a new `aws-sdk-go/service/cloudfront.CloudFront` instance
+// derived from 'uri' which is expected to take the form of:
+//
+//	aws://?region={AWS_REGION}&credentials={CREDENTIALS}
+//
+// Where '{CREDENTIALS}' is expected to be a valid `aaronland/go-aws-session` credentials
+// string.
 func NewClientWithURI(ctx context.Context, uri string) (*aws_cloudfront.CloudFront, error) {
 
 	sess, err := NewSessionWithURI(ctx, uri)
