@@ -5,10 +5,10 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	
+
 	"github.com/aws/aws-sdk-go-v2/aws"
 	aws_cloudfront "github.com/aws/aws-sdk-go-v2/service/cloudfront"
-	"github.com/aws/aws-sdk-go-v2/service/cloudfront/types"	
+	"github.com/aws/aws-sdk-go-v2/service/cloudfront/types"
 )
 
 // InvalidatePaths will issue a "CreateInvalidation" request for 'uris' in 'distribution_id'. It will return the
@@ -16,7 +16,7 @@ import (
 func InvalidatePaths(ctx context.Context, cl *aws_cloudfront.Client, distribution_id string, uris ...string) (string, string, error) {
 
 	count := len(uris)
-	
+
 	paths := &types.Paths{
 		Items:    uris,
 		Quantity: aws.Int32(int32(count)),

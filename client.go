@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/aaronland/go-aws-auth"
-	aws_cloudfront "github.com/aws/aws-sdk-go-v2/service/cloudfront"	
+	aws_cloudfront "github.com/aws/aws-sdk-go-v2/service/cloudfront"
 )
 
 // NewClientWithURI will return a new `aws-sdk-go/service/cloudfront.CloudFront` instance
@@ -22,6 +22,6 @@ func NewClientWithURI(ctx context.Context, uri string) (*aws_cloudfront.Client, 
 	if err != nil {
 		return nil, fmt.Errorf("Failed to derive config, %w", err)
 	}
-	
+
 	return aws_cloudfront.NewFromConfig(cfg), nil
 }
