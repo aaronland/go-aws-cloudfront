@@ -8,9 +8,10 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/aaronland/go-aws-cloudfront"
 	"log"
 	"os"
+
+	"github.com/aaronland/go-aws-cloudfront"	
 )
 
 func main() {
