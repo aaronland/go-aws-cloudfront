@@ -8,14 +8,15 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/aaronland/go-aws-cloudfront"
 	"log"
 	"os"
+
+	"github.com/aaronland/go-aws-cloudfront"
 )
 
 func main() {
 
-	client_uri := flag.String("client-uri", "", "A valid client URI in the form of 'aws://?region={AWS_REGION}&credentials={CREDENTIALS}' where '{CREDENTIAL}' is expected to be a valid aaronland/go-aws-session credential string.")
+	client_uri := flag.String("client-uri", "", "A valid client URI in the form of 'aws://?region={AWS_REGION}&credentials={CREDENTIALS}' where '{CREDENTIAL}' is expected to be a valid aaronland/go-aws-auth credential string.")
 	distribution_id := flag.String("distribution-id", "", "A valid AWS CloudFront distribution ID.")
 
 	flag.Usage = func() {

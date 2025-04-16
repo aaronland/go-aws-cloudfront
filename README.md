@@ -23,12 +23,12 @@ Invalidate one or more URIs from a CloudFront distribution.
 Usage:
 	 ./bin/invalidate uri(N) uri(N)
   -client-uri string
-    	A valid client URI in the form of 'aws://?region={AWS_REGION}&credentials={CREDENTIALS}' where '{CREDENTIAL}' is expected to be a valid aaronland/go-aws-session credential string.
+    	A valid client URI in the form of 'aws://?region={AWS_REGION}&credentials={CREDENTIALS}' where '{CREDENTIAL}' is expected to be a valid aaronland/go-aws-auth credential string.
   -distribution-id string
     	A valid AWS CloudFront distribution ID.
 ```
 
 ## See also
 
-* https://github.com/aws/aws-sdk-go/service/cloudfront
-* https://github.com/aaronland/go-aws-session
+* https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/cloudfront
+* https://github.com/aaronland/go-aws-auth
