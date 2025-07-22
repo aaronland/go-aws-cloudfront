@@ -1,3 +1,32 @@
+# v1.47.0 (2025-07-21)
+
+* **Feature**: Add dualstack endpoint support
+
+# v1.46.5 (2025-07-19)
+
+* **Dependency Update**: Updated to the latest SDK module versions
+
+# v1.46.4 (2025-07-17)
+
+* **Documentation**: Doc only update for CloudFront that fixes some customer-reported issues
+
+# v1.46.3 (2025-06-17)
+
+* **Dependency Update**: Update to smithy-go v1.22.4.
+* **Dependency Update**: Updated to the latest SDK module versions
+
+# v1.46.2 (2025-06-10)
+
+* **Dependency Update**: Updated to the latest SDK module versions
+
+# v1.46.1 (2025-05-08)
+
+* **Documentation**: Doc-only update for CloudFront. These changes include customer-reported issues.
+
+# v1.46.0 (2025-04-28)
+
+* **Feature**: Add distribution tenant, connection group, and multi-tenant distribution APIs to the CloudFront SDK.
+
 # v1.45.3 (2025-04-03)
 
 * No change notes available for this release.

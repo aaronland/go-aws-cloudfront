@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/aaronland/go-aws-auth"
+	"github.com/aaronland/go-aws-auth/v2"
 	aws_cloudfront "github.com/aws/aws-sdk-go-v2/service/cloudfront"
 )
 
